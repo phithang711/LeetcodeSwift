@@ -13,8 +13,8 @@ class Solution {
         var temp = 0
         var product = 1
         
-        for num in nums {
-            if num == 0 {
+        for i in 0..<nums.count {
+            if nums[i] == 0 {
                 if (count < temp) && (product > 0) {
                     count = temp
                 }
@@ -26,7 +26,7 @@ class Solution {
             
             temp += 1
             
-            if (product < 0) && (num < 0) {
+            if (product < 0) && (nums[i] < 0) {
                 product = 1
                 
                 if (count < temp) {
@@ -36,7 +36,7 @@ class Solution {
             } 
             
             if (product > 0) {
-                if (num < 0) {
+                if (nums[i] < 0) {
                     product = -1
                     if (count < temp - 1) {
                         count = temp - 1
@@ -89,14 +89,6 @@ class Solution {
                     count = temp
                 }
             }   
-        }
-        
-        if (count == 0) {
-            for num in nums {
-                if num > 0 {
-                    return 1
-                }
-            }
         }
         
         return count
