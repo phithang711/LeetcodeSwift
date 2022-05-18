@@ -16,7 +16,7 @@ class Solution {
     }
     
     func dfs(_ currentNode: Int,_ parrentNode:  Int,_ step: Int, _ trackingNode: inout [Int], _ listConnection: [[Int]], _ result: inout [[Int]]) -> Int {
-        trackingNode[currentNode] = step + 1
+        trackingNode[currentNode] = step
         
         for node in listConnection[currentNode] {
             if (node == parrentNode) {
@@ -30,7 +30,7 @@ class Solution {
             }
         }
         
-        if trackingNode[currentNode] == step + 1 && currentNode != 0 {
+        if trackingNode[currentNode] == step && currentNode != 0 {
             result.append([parrentNode, currentNode])
         }
         
