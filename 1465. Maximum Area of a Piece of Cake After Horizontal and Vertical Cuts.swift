@@ -5,24 +5,30 @@ class Solution {
         horizontalCuts.sort{$0 < $1}
         verticalCuts.sort{$0 < $1}
         
-        var horizontalCutsSpace = horizontalCuts
-        var verticalCutsSpace = verticalCuts
-        for i in 1..<horizontalCutsSpace.count {
-            horizontalCutsSpace[i] -= horizontalCuts[i - 1]
-        }
+        horizontalCuts.append(h)
+        verticalCuts.append(w)
         
         let mod = 1000000007
         
-        horizontalCutsSpace.append(h - horizontalCuts[horizontalCuts.count - 1])
+        var maxHorizontal = horizontalCuts[0]
+        var maxVertical = verticalCuts[0]
+        var diff = 0
         
-        for i in 1..<verticalCutsSpace.count {
-            verticalCutsSpace[i] -= verticalCuts[i - 1]
+        for i in 1..<horizontalCuts.count {
+            diff = horizontalCuts[i] - horizontalCuts[i - 1]
+            
+            if maxHorizontal < diff {
+                maxHorizontal = diff
+            }
         }
         
-        verticalCutsSpace.append(w - verticalCuts[verticalCuts.count - 1])
-        
-        let maxHorizontal = horizontalCutsSpace.max()!
-        let maxVertical = verticalCutsSpace.max()!
+        for i in 1..<verticalCuts.count {
+            diff = verticalCuts[i] - verticalCuts[i - 1]
+            
+            if maxVertical < diff {
+                maxVertical = diff
+            }
+        }
         
         return (maxHorizontal * maxVertical) % mod
     }
